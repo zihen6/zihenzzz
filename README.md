@@ -1,1 +1,1 @@
-# zihenzzz
+# 基于ollama拉取AI大模型，使用SpringAI集成大模型实现的智能医疗客服

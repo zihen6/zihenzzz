@@ -1,0 +1,7 @@
+com\zihenzzz\register\service\RegisterService.class
+com\zihenzzz\register\entity\Register.class
+com\zihenzzz\register\RegisterApplication.class
+com\zihenzzz\register\result\Result.class
+com\zihenzzz\register\dao\RegisterDao.class
+com\zihenzzz\register\controller\RegisterController.class
+com\zihenzzz\register\service\impl\RegisterServiceImpl.class

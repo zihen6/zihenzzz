@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zihenzzz.register.dao.RegisterDao">
+
+    <resultMap type="com.zihenzzz.register.entity.po.RegisterPO" id="RegisterMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="patientName" column="patient_name" jdbcType="VARCHAR"/>
+        <result property="patientPhone" column="patient_phone" jdbcType="VARCHAR"/>
+        <result property="patientDepartment" column="patient_department" jdbcType="VARCHAR"/>
+        <result property="patientDoctor" column="patient_doctor" jdbcType="VARCHAR"/>
+        <result property="patientDesease" column="patient_desease" jdbcType="VARCHAR"/>
+        <result property="patientDesc" column="patient_desc" jdbcType="VARCHAR"/>
+        <result property="state" column="state" javaType="int"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="reservationTime" column="reservation_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RegisterMap">
+        select id,
+               patient_name,
+               patient_phone,
+               patient_department,
+               patient_doctor,
+               patient_desease,
+               patient_desc,
+               create_time,
+               reservation_time
+        from register
+        where id = #{id}
+    </select>
+
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from register
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="patientName != null and patientName != ''">
+                and patient_name = #{patientName}
+            </if>
+            <if test="patientPhone != null and patientPhone != ''">
+                and patient_phone = #{patientPhone}
+            </if>
+            <if test="patientDepartment != null and patientDepartment != ''">
+                and patient_department = #{patientDepartment}
+            </if>
+            <if test="patientDoctor != null and patientDoctor != ''">
+                and patient_doctor = #{patientDoctor}
+            </if>
+            <if test="patientDesease != null and patientDesease != ''">
+                and patient_desease = #{patientDesease}
+            </if>
+            <if test="patientDesc != null and patientDesc != ''">
+                and patient_desc = #{patientDesc}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="reservationTime != null">
+                and reservation_time = #{reservationTime}
+            </if>
+        </where>
+    </select>
+    <select id="queryBatch" resultType="com.zihenzzz.register.entity.po.RegisterPO" >
+        select patient_department,
+               patient_doctor
+        from register where patient_name = #{patientName} and patient_phone = #{patientPhone} and state = 0
+
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into register(patient_name, patient_phone, patient_department, patient_doctor, patient_desease,
+                             patient_desc,state,create_time, reservation_time)
+        values (#{patientName}, #{patientPhone}, #{patientDepartment}, #{patientDoctor}, #{patientDesease},
+                #{patientDesc},#{state}, #{createTime}, #{reservationTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into register(patient_name, patient_phone, patient_department, patient_doctor, patient_desease,
+        patient_desc, create_time, reservation_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.patientName}, #{entity.patientPhone}, #{entity.patientDepartment}, #{entity.patientDoctor},
+            #{entity.patientDesease}, #{entity.patientDesc}, #{entity.createTime}, #{entity.reservationTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into register(patient_name, patient_phone, patient_department, patient_doctor, patient_desease,
+        patient_desc, create_time, reservation_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.patientName}, #{entity.patientPhone}, #{entity.patientDepartment}, #{entity.patientDoctor},
+            #{entity.patientDesease}, #{entity.patientDesc}, #{entity.createTime}, #{entity.reservationTime})
+        </foreach>
+        on duplicate key update
+        patient_name = values(patient_name),
+        patient_phone = values(patient_phone),
+        patient_department = values(patient_department),
+        patient_doctor = values(patient_doctor),
+        patient_desease = values(patient_desease),
+        patient_desc = values(patient_desc),
+        create_time = values(create_time),
+        reservation_time = values(reservation_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update register
+        <set>
+            <if test="patientName != null and patientName != ''">
+                patient_name = #{patientName},
+            </if>
+            <if test="patientPhone != null and patientPhone != ''">
+                patient_phone = #{patientPhone},
+            </if>
+            <if test="patientDepartment != null and patientDepartment != ''">
+                patient_department = #{patientDepartment},
+            </if>
+            <if test="patientDoctor != null and patientDoctor != ''">
+                patient_doctor = #{patientDoctor},
+            </if>
+            <if test="patientDesease != null and patientDesease != ''">
+                patient_desease = #{patientDesease},
+            </if>
+            <if test="patientDesc != null and patientDesc != ''">
+                patient_desc = #{patientDesc},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="reservationTime != null">
+                reservation_time = #{reservationTime},
+            </if>
+            <if test="state !=null and state !=''">
+                state = #{state},
+            </if>
+        </set>
+        where patient_phone = #{patientPhone}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from register
+        where id = #{id}
+    </delete>
+
+</mapper>
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 spring:
   ai:
     ollama:
@@ -7,3 +8,9 @@ spring:
 
 server:
   port: 2301
+=======
+
+
+server:
+  port: 2301
+>>>>>>> master

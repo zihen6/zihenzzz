@@ -1,0 +1,8 @@
+server:
+  port: 3002
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: zihen81033
+    url: jdbc:mysql://localhost:3306/hospital_registration?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8

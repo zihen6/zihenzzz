@@ -1,0 +1,18 @@
+spring:
+
+
+  cloud:
+    nacos:
+      config:
+
+        server-addr: 192.168.3.132:8848
+        prefix: ${spring.application.name}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        refresh-enabled: true
+
+      discovery:
+        enabled: true
+        server-addr: 192.168.3.132:8848
+  application:
+    name: Deepseek-chat

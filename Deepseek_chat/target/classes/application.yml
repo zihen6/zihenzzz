@@ -1,9 +1,0 @@
-spring:
-  ai:
-    ollama:
-      chat:
-        options:
-          model: deepseek-r1:8b
-
-server:
-  port: 2301

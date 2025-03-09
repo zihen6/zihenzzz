@@ -6,17 +6,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="Deepseek_register" />
         <module name="Deepseek_chat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="DeepSeekChat" target="17" />
+=======
+        <module name="DeepSeek_chat" />
+        <module name="Deepseek_chat_api" />
+        <module name="Deepseek_register_api" />
+        <module name="Deepseek_register_server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Deepseek_chat_api" target="17" />
+>>>>>>> master
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
       <module name="DeepSeekChat" options="" />
+=======
+      <module name="DeepSeek_chat" options="" />
+      <module name="Deepseek_register" options="" />
+>>>>>>> master
     </option>
   </component>
 </project>

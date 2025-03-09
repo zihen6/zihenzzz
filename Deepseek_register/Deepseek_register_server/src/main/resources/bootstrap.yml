@@ -1,0 +1,11 @@
+spring:
+
+
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 192.168.3.132:8848
+      server-addr: http://192.168.3.132:8848
+  application:
+    name: Deepseek-register

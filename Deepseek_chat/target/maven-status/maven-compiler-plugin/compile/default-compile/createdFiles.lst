@@ -1,0 +1,6 @@
+com\zihenzzz\config\ChatTools.class
+com\zihenzzz\interceptor\LoggingAdvisor.class
+com\zihenzzz\config\ChatTools$1.class
+com\zihenzzz\DeepSeekChatApplication.class
+com\zihenzzz\config\ChatTools$CancelBookingRequest.class
+com\zihenzzz\controller\OpenAiController.class
